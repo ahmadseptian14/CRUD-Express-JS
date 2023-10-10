@@ -1,7 +1,7 @@
 const dbPool = require('../config/database');
 
 const getAllLegalEntity = () => {
-    const query = 'SELECT * FROM users';
+    const query = 'SELECT * FROM legal_entities';
     return dbPool.execute(query)
 }
 

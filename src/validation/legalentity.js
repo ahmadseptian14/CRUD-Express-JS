@@ -1,20 +1,20 @@
-const { body} = require('express-validator');
+const { check} = require('express-validator');
 
 const emailValidation = [
-    body('pic_email').isEmail().withMessage('Email invalid'),
+    check('pic_email').isEmail().withMessage('Email invalid'),
   ];
 
-const validateField = [
-    body('pic_name').notEmpty(),
-    body('pic_email').notEmpty(),
-    body('pic_position').notEmpty(),
-    body('company_name').notEmpty(),
-    body('company_mobile').notEmpty(),
-    body('company_npwp').notEmpty(),
-    body('company_address').notEmpty(),
+const fieldValidation = [
+    check('pic_name').notEmpty().withMessage('PIC Name cannot be empty'),
+    check('pic_email').notEmpty().withMessage('Email cannot be empty'),
+    check('pic_position').notEmpty().withMessage('PIC Position cannot be empty'),
+    check('company_name').notEmpty().withMessage('Company Name cannot be empty'),
+    check('company_mobile').notEmpty().withMessage('Company Mobile cannot be empty'),
+    check('company_npwp').notEmpty().withMessage('Company NPWP cannot be empty'),
+    check('company_address').notEmpty().withMessage('Company Address cannot be empty'),
 ]
 
   module.exports = {
     emailValidation,
-    validateField
+    fieldValidation
 };
