@@ -5,6 +5,7 @@ const validate = require('../validation/legalentity');
 const router = express.Router();
 
 router.get('/', legalentityController.getAllLegalEntity);
+router.get('/:id', legalentityController.getLegalEntityById);
 router.post('/create', validate.emailValidation, validate.fieldValidation, legalentityController.createNewLegalEntity);
 router.patch('/update/:id', legalentityController.updateLegalEntity);
 router.delete('/delete/:id', legalentityController.deleteLegalEntity);

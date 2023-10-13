@@ -1,4 +1,4 @@
-const dbPool = require('../config/database');
+const dbPool = require('../_config/database');
 
 const getAllLegalEntity = () => {
     const query = 'SELECT * FROM legal_entities';
