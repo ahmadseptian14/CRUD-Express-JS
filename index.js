@@ -1,6 +1,7 @@
 require('dotenv').config()
 const express = require('express');
 const legalEntityRoutes = require('./routes/legalentitiesRouter');
+const durationRoutes = require('./routes/durationsRouter');
 const middlewareLogRequest = require('./middleware/logs');
 const upload = require('./middleware/multer');
 
@@ -16,6 +17,7 @@ app.use('/assets', express.static('public/images'));
 
 // Routes
 app.use('/api/v1/legalentities', legalEntityRoutes);
+app.use('/api/v1/durations', durationRoutes);
 app.post('/upload', upload.single('photo'), (req, res) => {
     res.json({
         message: "Success upload image"
