@@ -10,4 +10,4 @@ const legalEntityValidation = [
     check('company_address').notEmpty().withMessage('Company Address cannot be empty'),
 ]
 
-  module.exports = legalEntityValidation;
+module.exports = legalEntityValidation;

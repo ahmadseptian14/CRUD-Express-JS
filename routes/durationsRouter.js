@@ -1,5 +1,5 @@
 const express = require('express');
-const {getAllDuration} = require('../controller/durations');
+const {getAllDuration} = require('../controllers/durations');
 // const legalEntityValidation = require('../validation/legalentity');
 // const checkToken = require('../middleware/authorization');
 // const upload = require('../middleware/multer');

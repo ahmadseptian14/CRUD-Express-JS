@@ -1,8 +1,8 @@
-const { duration } = require('../models');
+const { Duration } = require('../models');
 
 const getAllDuration = async (req, res) => {
     try {
-        const data = await duration.findAll()
+        const data = await Duration.findAll()
 
         if(!data || data.length === 0){
             return res.status(200).json({

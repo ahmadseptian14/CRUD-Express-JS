@@ -3,29 +3,42 @@ const {validationResult} = require('express-validator');
 
 
 const getAllLegalEntity = async (req, res) => {
-  try {
-    const data = await LegalEntity.findAll()
-    // Jika sukses dan data kosong
-    if (!data || data.length === 0) {
+    try {
+      const page = parseInt(req.query.page) || 1; // Nomor halaman, default ke 1 jika tidak ada
+      const perPage = parseInt(req.query.perPage) || 10; // Jumlah item per halaman, default ke 10 jika tidak ada
+
+      const offset = (page - 1) * perPage;
+
+      const data = await LegalEntity.findAndCountAll({
+        limit: perPage,
+        offset: offset,
+      });
+
+      // Jika sukses dan data kosong
+      if (!data.rows || data.rows.length === 0) {
         return res.status(200).json({
           code: "RES_LEG_101",
           message: 'No legal entity data found',
         });
       }
 
-    // Jika berhasil get data
-    res.status(200).json({
+      // Jika berhasil mendapatkan data
+      res.status(200).json({
         code: "RES_LGE_102",
-        message: 'Success get all legal entity',
-        data : data
-    })
-  } catch (error) {
-    res.status(500).json({
+        message: 'Success get legal entity data',
+        data: data.rows,
+        totalCount: data.count,
+        totalPages: Math.ceil(data.count / perPage),
+        currentPage: page,
+      });
+    } catch (error) {
+      res.status(500).json({
         message: 'Server Error',
-        serverMessage: error
-    })
-  }
-}
+        serverMessage: error,
+      });
+    }
+  };
+
 
 const getLegalEntityById = async (req, res) => {
    try {
